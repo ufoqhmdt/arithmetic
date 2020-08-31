@@ -35,7 +35,26 @@ public class Main {
 
 
 class Solution {
-    public ListNode swapPairs(ListNode head) {
+
+    public void swapMethodByRecursion(ListNode lastNode, ListNode head) {
+        ListNode one = head;
+        ListNode two = one != null ? one.next : null;
+        ListNode temp = two != null ? two.next : null;
+        if (one == null || two == null) {
+            return;
+        }
+        if (lastNode != null) {
+            lastNode.next = two;
+            one.next = temp;
+            two.next = one;
+        } else {
+            one.next = temp;
+            two.next = one;
+        }
+        swapMethodByRecursion(one, temp);
+    }
+
+    public ListNode swapPairsByMode(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
@@ -86,3 +105,5 @@ class ListNode {
         this.next = next;
     }
 }
+
+
